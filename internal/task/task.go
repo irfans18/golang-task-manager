@@ -6,15 +6,24 @@ import (
 
 // Task represents a task in the task manager.
 type Task struct {
-	ID     uuid.UUID `json:"id"`
-	Name   string    `json:"name"`
+	ID     string `json:"id"`
+	Name   string `json:"name"`
 	Status bool
 }
 
 // NewTask creates a new Task with the given ID and description.
 func NewTask(description string) *Task {
 	return &Task{
-		ID:     uuid.New(),
+		ID:     uuid.New().String(),
+		Name:   description,
+		Status: false,
+	}
+}
+
+// NewTask creates a new Task with the given ID and description.
+func NewTaskWithID(id string, description string) *Task {
+	return &Task{
+		ID:     id,
 		Name:   description,
 		Status: false,
 	}

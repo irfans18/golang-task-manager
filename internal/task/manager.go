@@ -47,7 +47,7 @@ func (m *Manager) FindAll() []*Task {
 // FindTaskByID returns the task with the given ID.
 func (m *Manager) FindTaskByID(id string) (*Task, error) {
 	for _, task := range m.tasks {
-		if task.ID.String() == id {
+		if task.ID == id {
 			return task, nil
 		}
 	}
@@ -57,7 +57,7 @@ func (m *Manager) FindTaskByID(id string) (*Task, error) {
 // findTaskIndexByID finds the index of a task with the given ID.
 func (m *Manager) findTaskIndexByID(id string) (int, error) {
 	for idx, task := range m.tasks {
-		if task.ID.String() == id {
+		if task.ID == id {
 			return idx, nil
 		}
 	}
