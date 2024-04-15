@@ -25,8 +25,18 @@ func (m *Manager) MarkTaskAsDone(id string) {
 }
 
 // Add adds a new task to the task manager.
-func (m *Manager) Add(task *Task) {
-	m.tasks = append(m.tasks, NewTask(task.Description))
+func (m *Manager) Add(task *Task) error {
+	// Check if the task already exists
+	for _, existingTask := range m.tasks {
+		if existingTask.ID == task.ID {
+			return errors.New("task with the same ID already exists")
+		}
+	}
+
+	// Append the new task to the task manager's slice
+	m.tasks = append(m.tasks, task)
+	return nil
+	//m.tasks = append(m.tasks, NewTask(task.Name))
 }
 
 // FindAll returns all tasks managed by the task manager.
