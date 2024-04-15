@@ -1,4 +1,4 @@
-package task
+package main
 
 import (
 	"flag"
@@ -14,8 +14,8 @@ func main() {
 	// Define command-line flags
 	addCmd := flag.NewFlagSet("add", flag.ExitOnError)
 	listCmd := flag.NewFlagSet("list", flag.ExitOnError)
-	doneCmd := flag.NewFlagSet("done", flag.ExitOnError)
-	deleteCmd := flag.NewFlagSet("delete", flag.ExitOnError)
+	//doneCmd := flag.NewFlagSet("done", flag.ExitOnError)
+	//deleteCmd := flag.NewFlagSet("delete", flag.ExitOnError)
 
 	// Parse the command-line arguments
 	if len(os.Args) < 2 {
@@ -28,11 +28,11 @@ func main() {
 	case "add":
 		cmd.AddCommand(addCmd, manager)
 	case "list":
-		cmd.AddCommand(listCmd)
-	case "done":
-		cmd.AddCommand(doneCmd)
-	case "delete":
-		cmd.AddCommand(deleteCmd)
+		cmd.ListCommand(listCmd, manager)
+	//case "done":
+	//	cmd.AddCommand(doneCmd)
+	//case "delete":
+	//	cmd.AddCommand(deleteCmd)
 	default:
 		fmt.Println("Invalid command")
 		os.Exit(1)
